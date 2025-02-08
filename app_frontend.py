@@ -9,22 +9,32 @@ def main():
     st.subheader("Family Background (U1)")
 
     # Age
-    u1_q1 = st.number_input("What is your age?", min_value=1, max_value=100, value=35, step=1)
-    if u1_q1 < 20 or u1_q1 > 60:
+    # Modified to use radio buttons with ranges
+    u1_q1 = st.radio("What is your age range?", [
+        "Below 20 years old",
+        "20-25 years old",
+        "25-35 years old",
+        "35-50 years old",
+        "Above 60 years old"
+    ], index=3)
+
+    if u1_q1 == "Below 20 years old" or u1_q1 == "Above 60 years old":
         u1_q1_score = 1
-    elif u1_q1 >= 20 and u1_q1 < 25:
+    elif u1_q1 == "20-25 years old":
         u1_q1_score = 2
-    elif u1_q1 >= 35 and u1_q1 < 50:
-        u1_q1_score = 3
-    else:
+    elif u1_q1 == "25-35 years old":
         u1_q1_score = 4
+    elif u1_q1 == "35-50 years old":
+        u1_q1_score = 3
+    else:  # 50-60 years old
+        u1_q1_score = 2
 
     # Number of Laborers
-    u1_q2 = st.radio("How many laborers are in your household?", 
-                    ["0-1 laborers (Insufficient labor capacity)", 
-                    "2 laborers (Marginally sufficient labor)",
-                    "3 laborers (Good labor capacity)",
-                    "4 or more laborers (Excellent labor capacity)"], 
+    u1_q2 = st.radio("How many individuals in your household are engaged in labor or work-related activities?", 
+                    ["0-1", 
+                    "2",
+                    "3",
+                    "4"], 
                     index=0)
     if u1_q2 == "0-1 laborers (Insufficient labor capacity)":
         u1_q2_score = 1
